@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Auto Redirect to Page 1</title>
+  <script>
+    // 自動檢測使用者語言
+    window.onload = function() {
+      const lang = navigator.language || navigator.userLanguage; // 獲取瀏覽器語言
+      if (lang.startsWith('zh')) {
+        // 如果語言是中文，跳轉到 zh/page1/index.html
+        window.location.href = 'zh/page1/';
+      } else {
+        // 否則，跳轉到 en/page1/index.html
+        window.location.href = 'en/page1/';
+      }
+    };
+  </script>
+  <noscript>
+    <p>Please enable JavaScript to view this page.</p>
+    <!-- 如果不支援 JavaScript，轉為用 HTML 跳轉頁面。 -->
+    <meta http-equiv="refresh" content="5;url=zh/page1/">
+  </noscript>
+</head>
+<body>
+  <h1>Redirecting...</h1>
+  <noscript>JS ERROR</noscript>
+</body>
+</html>
