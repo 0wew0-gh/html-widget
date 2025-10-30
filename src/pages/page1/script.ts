@@ -1,11 +1,18 @@
 import "../../shared/style.css";
 import { sharedFunction } from "../../shared/utils";
+import { FirstShowAnimation } from "./first-show-animation";
+import { HorizontalScroll } from "./h-scroll";
 
 sharedFunction(); // 這是共享的程式碼。
 
-const 環境語言 = document.documentElement.lang;
-if (環境語言 === "zh") {
+const language = document.documentElement.lang;
+if (language === "zh") {
   console.log("这是中文页面");
-} else if (環境語言 === "en") {
+} else if (language === "en") {
   console.log("This is the English page");
 }
+
+window.onload = () => {
+  new HorizontalScroll();
+  new FirstShowAnimation();
+};

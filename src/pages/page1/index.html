@@ -1,12 +1,65 @@
 <!DOCTYPE html>
 <html lang="zh">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><%= config.welcomeMessage %>1</title>
-</head>
-<body>
-  <h1><%= config.welcomeMessage %>1</h1>
-  <img src="<%= require('../../assets/images/ok.png') %>" alt="OK">
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= config.welcomeMessage %>1</title>
+  </head>
+  <body>
+    <h1><%= config.welcomeMessage %>1</h1>
+    <div class="horizontal-scroll width-100vw">
+      <div class="horizontal-scroll-img flexRow-start">
+        <img
+          id="1"
+          src="<%= require('../../assets/images/home-horizontal-scroll/1.png') %>"
+        />
+        <img
+          id="2"
+          src="<%= require('../../assets/images/home-horizontal-scroll/2.png') %>"
+        />
+        <img
+          id="3"
+          src="<%= require('../../assets/images/home-horizontal-scroll/3.png') %>"
+        />
+        <img
+          id="4"
+          src="<%= require('../../assets/images/home-horizontal-scroll/4.png') %>"
+        />
+        <img
+          id="5"
+          src="<%= require('../../assets/images/home-horizontal-scroll/5.jpeg') %>"
+        />
+        <img
+          id="6"
+          src="<%= require('../../assets/images/home-horizontal-scroll/6.png') %>"
+        />
+        <img
+          id="7"
+          src="<%= require('../../assets/images/home-horizontal-scroll/7.png') %>"
+        />
+        <img
+          id="8"
+          src="<%= require('../../assets/images/home-horizontal-scroll/8.png') %>"
+        />
+        <img
+          id="9"
+          src="<%= require('../../assets/images/home-horizontal-scroll/9.jpg') %>"
+        />
+      </div>
+    </div>
+    <div
+      class="width-100vw"
+      style="height: 100vh; background-color: aqua"
+    ></div>
+
+    <div id="target" class="width-100vw target" style="height: 100vh">
+      <div type="number">125</div>
+      <div>999</div>
+      <div type="number">99981</div>
+    </div>
+    <div
+      class="width-100vw"
+      style="height: 100vh; background-color: blueviolet"
+    ></div>
+  </body>
 </html>

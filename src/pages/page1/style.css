@@ -1,8 +1,52 @@
 h1 {
-    color: palevioletred
+  color: green;
 }
 @media (prefers-color-scheme: dark) {
-    h1 {
-      color: lightpink
-    }
+  h1 {
+    color: greenyellow;
+  }
+}
+
+.flexRow-start {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.width-100vw {
+  width: calc(100vw - var(--scrollbar-width));
+}
+
+
+/* 横向滚动 */
+.horizontal-scroll {
+  overflow-y: auto;
+  overflow: hidden; /* 隐藏超出容器的部分 */
+}
+.horizontal-scroll-img {
+  animation: scroll-left linear infinite; /* 横向滚动动画 */
+}
+.flexRow-start img {
+  height: 150px;
+  margin-right: 10px; /* 图片之间的间距 */
+}
+
+
+/* 第一次入场动画 */
+
+.target {
+    background-color: #3498db;
+    color: white;
+    opacity: 0; /* 初始状态为透明 */
+    transform: translateY(50px); /* 初始位置略微下移 */
+    transition: opacity 1s, transform 1s; /* 动画效果 */
+}
+
+.target.show {
+    opacity: 1;
+    transform: translateY(0); /* 显示时，回到正常位置 */
+}
+.target div{
+  text-align: center;
 }

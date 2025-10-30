@@ -1,10 +1,14 @@
 /* 默认样式 */
 body {
-  font-family: "Microsoft YaHei", "PingFang SC", "Source Han Sans", "Noto Sans CJK SC", "WenQuanYi Micro Hei", "SimSun", "STSong", sans-serif;
+  font-family: "Microsoft YaHei", "PingFang SC", "Source Han Sans",
+    "Noto Sans CJK SC", "WenQuanYi Micro Hei", "SimSun", "STSong", sans-serif;
   margin: 0;
   padding: 0;
   background-color: white;
   color: black;
+}
+:root {
+  --scrollbar-width: 8px;
 }
 
 /* 暗色模式 */
@@ -13,4 +17,24 @@ body {
     background-color: #121212;
     color: #e0e0e0;
   }
+}
+
+
+/* 确保变量在 webkit-scrollbar 伪元素中生效 */
+::-webkit-scrollbar {
+  width: var(--scrollbar-width); /* 使用变量 */
+}
+
+/* 你也可以修改其他相关部分 */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #999;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
