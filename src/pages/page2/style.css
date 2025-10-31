@@ -26,7 +26,7 @@ div[type="btnGroup"] {
   display: flex;
   flex-wrap: nowrap;
   justify-content: center;
-  gap: 10px;
+  gap: 0px; /* 按钮的间距 */
 }
 
 div[type="btnGroup"] div {
@@ -36,6 +36,7 @@ div[type="btnGroup"] div {
   line-height: var(--tool-bar-height);
   color: rgb(0, 0, 0);
   font-weight: 600;
+  cursor: pointer;
   background-color: #ffffff;
   text-align: center;
   z-index: 1;
@@ -54,20 +55,21 @@ div[type="btnGroup"] .select {
   bottom: 0;
   left: -150px;
   min-width: 150px;
-  height: 3px;
-  background-color: var(--btnGroup-select-color); /* 遮罩的背景色 */
-  transition: left ease; /* 平滑过渡效果 */
-  z-index: 2; /* 遮罩层位于按钮下方 */
-  pointer-events: none; /* 使遮罩不影响按钮的点击事件 */
+  height: 3px; /* 选择标识的高度 */
+  background-color: var(--btnGroup-select-color);
+  transition: left ease;
+  z-index: 2;
+  pointer-events: none;
 }
 
 div[type="tabsView"] {
   position: absolute;
   height: 100%;
   background-color: #1867c0;
+  transition: left ease; /* 平滑过渡效果 */
 }
 div[type="tabsView"] div[type="tab"] {
   height: 100%;
+  width: 100vw; /* 未加载完成前占满屏幕 */
   float: left;
-  transition: left ease; /* 平滑过渡效果 */
 }
