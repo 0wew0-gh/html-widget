@@ -1,8 +1,73 @@
 h1 {
-    color: green
+  color: green;
 }
 @media (prefers-color-scheme: dark) {
-    h1 {
-      color: greenyellow
-    }
+  h1 {
+    color: greenyellow;
+  }
+}
+
+:root {
+  --tool-bar-height: 50px;
+  --btnGroup-select-color: #1867c0;
+}
+
+.content {
+  position: relative;
+  background-color: aquamarine;
+  overflow: hidden;
+}
+
+div[type="btnGroup"] {
+  position: relative;
+  width: 100%;
+  height: var(--tool-bar-height);
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+div[type="btnGroup"] div {
+  position: relative;
+  min-width: 150px;
+  height: 100%;
+  line-height: var(--tool-bar-height);
+  color: rgb(0, 0, 0);
+  font-weight: 600;
+  background-color: #ffffff;
+  text-align: center;
+  z-index: 1;
+}
+
+div[type="btnGroup"] div:hover {
+  background-color: #ddd;
+}
+
+div[select] {
+  color: var(--btnGroup-select-color) !important;
+}
+
+div[type="btnGroup"] .select {
+  position: absolute;
+  bottom: 0;
+  left: -150px;
+  min-width: 150px;
+  height: 3px;
+  background-color: var(--btnGroup-select-color); /* 遮罩的背景色 */
+  transition: left ease; /* 平滑过渡效果 */
+  z-index: 2; /* 遮罩层位于按钮下方 */
+  pointer-events: none; /* 使遮罩不影响按钮的点击事件 */
+}
+
+div[type="tabsView"] {
+  position: absolute;
+  height: 100%;
+  background-color: #1867c0;
+}
+div[type="tabsView"] div[type="tab"] {
+  height: 100%;
+  float: left;
+  transition: left ease; /* 平滑过渡效果 */
 }

@@ -9,6 +9,7 @@ body {
 }
 :root {
   --scrollbar-width: 8px;
+  --appbar-height: 0px;
 }
 
 /* 暗色模式 */
@@ -19,6 +20,19 @@ body {
   }
 }
 
+.flexRow-start {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.width-100vw {
+  width: calc(100vw - var(--scrollbar-width));
+}
+.height-100vh {
+  height: calc(100vh - var(--appbar-height));
+}
 
 /* 确保变量在 webkit-scrollbar 伪元素中生效 */
 ::-webkit-scrollbar {
