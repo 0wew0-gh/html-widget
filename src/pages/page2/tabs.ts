@@ -15,7 +15,6 @@ export class Tabs {
         for (let i = 0; i < tabsViews.length; i++) {
             const tabsV = tabsViews[i] as HTMLDivElement;
             tabsV.style.width = `${tabs.clientWidth}px`;
-            console.log('tabsV:', tabsV, tabsV.clientWidth);
             this.initTabView(tabsV as HTMLDivElement);
         }
 
@@ -59,7 +58,6 @@ export class Tabs {
                 if (selected != null) {
                     return;
                 }
-                // console.log('thisBtn:', thisBtn.offsetLeft);
                 // 移除所有选中项
                 for (let i = 0; i < btnGroupItems.length; i++) {
                     const btnGItem = btnGroupItems[i];
@@ -76,15 +74,12 @@ export class Tabs {
                 const tabDiv = document.querySelector(`div[type="tab"][tabID="${tabID}"]`) as HTMLDivElement;
                 const tabsView = tabDiv.parentElement as HTMLDivElement;
                 tabsView.style.left = `-${tabDiv.offsetLeft}px`;
-
-                // console.log('tabID:', tabID, tabDiv, tabDiv.offsetLeft, tabsView);
             });
         }
     }
 
     initTabView(tabsView: HTMLDivElement) {
         const tabs = tabsView.querySelectorAll('div[type="tab"]');
-        // console.log('tabsView:', tabsView, tabsView.clientWidth);
         for (let i = 0; i < tabs.length; i++) {
             const tab = tabs[i] as HTMLDivElement;
             tab.style.width = `${tabsView.clientWidth}px`
