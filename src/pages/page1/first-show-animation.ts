@@ -5,7 +5,7 @@ export class FirstShowAnimation {
         if (targetElement == null) {
             return;
         }
-        const targetNumDivs = targetElement.querySelectorAll('div[type="number"]');
+        const targetNumDivs = targetElement.querySelectorAll('[type="number"]');
         if (targetNumDivs == null) {
             return;
         }
@@ -17,7 +17,7 @@ export class FirstShowAnimation {
                 if (entry.isIntersecting) {
                     const att = entry.target.getAttribute('type');
                     if (att != null && att == "number") {
-                        this.numberJump(entry.target as HTMLDivElement, 0, parseInt(entry.target.innerHTML))
+                        this.numberJump(entry.target as HTMLElement, 0, parseInt(entry.target.innerHTML))
                     } else {
                         entry.target.classList.add('show');
                     }
@@ -38,7 +38,7 @@ export class FirstShowAnimation {
 
     }
 
-    numberJump(numbDiv: HTMLDivElement, start: number, end: number, duration: number = 3) {
+    numberJump(numbDiv: HTMLElement, start: number, end: number, duration: number = 3) {
         const poolCount = 500;
         const diff = end - start;
         var addNum = Math.ceil(diff / poolCount);

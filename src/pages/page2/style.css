@@ -18,7 +18,7 @@ h1 {
   overflow: hidden;
 }
 
-div[type="btnGroup"] {
+[type="btnGroup"] {
   position: relative;
   width: 100%;
   height: var(--tool-bar-height);
@@ -29,7 +29,7 @@ div[type="btnGroup"] {
   gap: 0px; /* 按钮的间距 */
 }
 
-div[type="btnGroup"] div {
+[type="btnGroup"] div {
   position: relative;
   min-width: 150px;
   height: 100%;
@@ -42,15 +42,15 @@ div[type="btnGroup"] div {
   z-index: 1;
 }
 
-div[type="btnGroup"] div:hover {
+[type="btnGroup"] div:hover {
   background-color: #ddd;
 }
 
-div[select] {
+[select] {
   color: var(--btnGroup-select-color) !important;
 }
 
-div[type="btnGroup"] .select {
+[type="btnGroup"] .select {
   position: absolute;
   bottom: 0;
   left: -150px;
@@ -62,13 +62,13 @@ div[type="btnGroup"] .select {
   pointer-events: none;
 }
 
-div[type="tabsView"] {
+[type="tabsView"] {
   position: absolute;
   height: 100%;
   background-color: #1867c0;
   transition: left ease; /* 平滑过渡效果 */
 }
-div[type="tabsView"] div[type="tab"] {
+[type="tabsView"] [type="tab"] {
   height: 100%;
   width: 100vw; /* 未加载完成前占满屏幕 */
   float: left;

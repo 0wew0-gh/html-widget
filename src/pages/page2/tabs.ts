@@ -4,7 +4,7 @@ export class Tabs {
 
     constructor() {
         // 获取Tabs主体
-        const tabs = document.querySelectorAll('div[type="tabs"]');
+        const tabs = document.querySelectorAll('[type="tabs"]');
         for (let i = 0; i < tabs.length; i++) {
             const tc = tabs[i];
             this.initTabs(tc as HTMLDivElement);
@@ -14,7 +14,7 @@ export class Tabs {
     // 初始化插件
     initTabs(tabs: HTMLDivElement) {
         // 获取Tabs场景容器
-        const tabsViews = tabs.querySelectorAll('div[type="tabsView"]');
+        const tabsViews = tabs.querySelectorAll('[type="tabsView"]');
         for (let i = 0; i < tabsViews.length; i++) {
             const tabsV = tabsViews[i] as HTMLDivElement;
             tabsV.style.width = `${tabs.clientWidth}px`;
@@ -22,7 +22,7 @@ export class Tabs {
         }
 
         // 获取按钮组
-        const btnGroup = tabs.querySelectorAll('div[type="btnGroup"]');
+        const btnGroup = tabs.querySelectorAll('[type="btnGroup"]');
         for (let i = 0; i < btnGroup.length; i++) {
             const btnG = btnGroup[i];
             this.initBtnGroupItems(btnG as HTMLDivElement);
@@ -32,7 +32,7 @@ export class Tabs {
 
     // 初始化按钮组中的按钮
     initBtnGroupItems(btnGroup: HTMLDivElement) {
-        const btnGroupItems = btnGroup.querySelectorAll('div[type="btnGroupItem"]');
+        const btnGroupItems = btnGroup.querySelectorAll('[type="btnGroupItem"]');
         // 获取选中标记
         var select = btnGroup.querySelector('.select') as HTMLSpanElement;
         if (select == undefined || select == null) {
@@ -58,7 +58,7 @@ export class Tabs {
                 // 获取按钮设置的tabID
                 const tabID = btnGItem.getAttribute('tabID');
                 // 获取tabID对应的tab
-                const tabDiv = document.querySelector(`div[type="tab"][tabID="${tabID}"]`) as HTMLDivElement;
+                const tabDiv = document.querySelector(`[type="tab"][tabID="${tabID}"]`) as HTMLDivElement;
                 const tabsView = tabDiv.parentElement as HTMLDivElement;
                 tabsView.style.left = `-${tabDiv.offsetLeft}px`;
                 tabsView.style.transitionDuration = "300ms";
@@ -83,7 +83,7 @@ export class Tabs {
                 // 获取按钮设置的tabID
                 const tabID = thisBtn.getAttribute('tabID');
                 // 获取tabID对应的tab
-                const tabDiv = document.querySelector(`div[type="tab"][tabID="${tabID}"]`) as HTMLDivElement;
+                const tabDiv = document.querySelector(`[type="tab"][tabID="${tabID}"]`) as HTMLDivElement;
                 const tabsView = tabDiv.parentElement as HTMLDivElement;
                 tabsView.style.left = `-${tabDiv.offsetLeft}px`;
             });
@@ -92,7 +92,7 @@ export class Tabs {
 
     // 初始化Tab场景
     initTabView(tabsView: HTMLDivElement) {
-        const tabs = tabsView.querySelectorAll('div[type="tab"]');
+        const tabs = tabsView.querySelectorAll('[type="tab"]');
         for (let i = 0; i < tabs.length; i++) {
             const tab = tabs[i] as HTMLDivElement;
             tab.style.width = `${tabsView.clientWidth}px`
