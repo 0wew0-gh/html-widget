@@ -9,29 +9,50 @@ h1 {
 
 :root {
   --tool-bar-height: 50px;
+  --tool-bar-width: 150px;
+  --tool-bar-Vertical-height: 150px;
   --btnGroup-select-color: #1867c0;
 }
 
 .content {
   position: relative;
-  background-color: aquamarine;
   overflow: hidden;
 }
 
+/* 总体样式 */
+[type="tabs"] {
+  height: 100vh;
+  display: flex;
+}
+[type="tabs"][direction="Horizontal"] {
+  flex-direction: row;
+}
+[type="tabs"][direction="Vertical"] {
+  flex-direction: column;
+}
+
+/* 按钮组样式 */
 [type="btnGroup"] {
   position: relative;
-  width: 100%;
-  height: var(--tool-bar-height);
   background-color: rgb(255, 255, 255);
   display: flex;
   flex-wrap: nowrap;
   justify-content: center;
   gap: 0px; /* 按钮的间距 */
 }
+[direction="Vertical"] [type="btnGroup"] {
+  width: 100%;
+  height: var(--tool-bar-height);
+  flex-direction: row;
+}
+[direction="Horizontal"] [type="btnGroup"] {
+  flex-direction: column;
+}
 
+/* 按钮样式 */
 [type="btnGroup"] div {
   position: relative;
-  min-width: 150px;
+  min-width: var(--tool-bar-width);
   height: 100%;
   line-height: var(--tool-bar-height);
   color: rgb(0, 0, 0);
@@ -41,35 +62,59 @@ h1 {
   text-align: center;
   z-index: 1;
 }
+[direction="Horizontal"] [type="btnGroup"] div {
+  height: var(--tool-bar-Vertical-height);
+  line-height: var(--tool-bar-Vertical-height);
+}
 
+/* 按钮鼠标移过样式 */
 [type="btnGroup"] div:hover {
   background-color: #ddd;
 }
-
+/* 按钮选中样式 */
 [select] {
   color: var(--btnGroup-select-color) !important;
 }
-
+/* 按钮选中标识样式 */
 [type="btnGroup"] .select {
   position: absolute;
-  bottom: 0;
-  left: -150px;
-  min-width: 150px;
-  height: 3px; /* 选择标识的高度 */
   background-color: var(--btnGroup-select-color);
-  transition: left ease;
   z-index: 2;
   pointer-events: none;
+}
+[direction="Vertical"] [type="btnGroup"] .select {
+  transition: left ease;
+  bottom: 0;
+  left: calc(0px - var(--tool-bar-width));
+  min-width: var(--tool-bar-width);
+  height: 3px; /* 选择标识的高度 */
+}
+[direction="Horizontal"] [type="btnGroup"] .select {
+  transition: top ease;
+  left: var(--tool-bar-width);
+  min-width: 3px;
+  height: var(--tool-bar-Vertical-height);
 }
 
 [type="tabsView"] {
   position: absolute;
-  height: 100%;
   background-color: #1867c0;
-  transition: left ease; /* 平滑过渡效果 */
 }
 [type="tabsView"] [type="tab"] {
   height: 100%;
   width: 100vw; /* 未加载完成前占满屏幕 */
+}
+[direction="Vertical"] [type="tabsView"] [type="tab"] {
   float: left;
+}
+[direction="Vertical"] [type="tabsView"] {
+  top: var(--tool-bar-height);
+  height: calc(100% - var(--tool-bar-height));
+  transition: left ease; /* 平滑过渡效果 */
+}
+[direction="Horizontal"] [type="tabsView"] {
+  left: var(--tool-bar-width);
+  width: calc(100% - var(--tool-bar-width));
+  height: calc(100%);
+  transition: top ease; /* 平滑过渡效果 */
 }

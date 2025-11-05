@@ -7,13 +7,17 @@
   </head>
   <body>
     <h1><%= config.welcomeMessage %>2</h1>
-    <div class="width-100vw height-100vh content" type="tabs">
-      <div class="btn-group" type="btnGroup">
-        <div type="btnGroupItem" tabID="GI1">1</div>
+    <div
+      class="width-100vw height-100vh content"
+      style="background-color: #ff9a9a;"
+      type="tabs"
+      direction="Vertical"
+    >
+      <div type="btnGroup">
+        <div type="btnGroupItem" tabID="GI1" select>1</div>
         <div type="btnGroupItem" tabID="GI2">2</div>
-        <div type="btnGroupItem" tabID="GI3" select>3</div>
+        <div type="btnGroupItem" tabID="GI3">3</div>
         <div type="btnGroupItem" tabID="GI4">4</div>
-        <span class="select"></span> <!-- 此处标记可以不写，后续自动添加 -->
       </div>
       <div type="tabsView">
         <div type="tab" tabID="GI1" style="background-color: antiquewhite">
@@ -24,21 +28,31 @@
         <div type="tab" tabID="GI4" style="background-color: burlywood">4</div>
       </div>
     </div>
-    <div class="width-100vw height-100vh content" type="tabs">
-      <div class="btn-group" type="btnGroup">
+    <div
+      class="width-100vw height-100vh content"
+      style="background-color: #d283ff;"
+      type="tabs"
+      direction="Horizontal"
+    >
+      <div type="btnGroup">
         <div type="btnGroupItem" tabID="GIa1">1</div>
         <div type="btnGroupItem" tabID="GIa2" select>2</div>
         <div type="btnGroupItem" tabID="GIa3">3</div>
         <div type="btnGroupItem" tabID="GIa4">4</div>
-        <span class="select"></span> <!-- 此处标记可以不写，后续自动添加 -->
+        <span class="select"></span>
+        <!-- 此处标记可以不写，后续自动添加 -->
       </div>
       <div type="tabsView">
         <div type="tab" tabID="GIa1" style="background-color: antiquewhite">
-         a1
+          a1
         </div>
         <div type="tab" tabID="GIa2" style="background-color: aqua">a2</div>
-        <div type="tab" tabID="GIa3" style="background-color: aquamarine">a3</div>
-        <div type="tab" tabID="GIa4" style="background-color: burlywood">a4</div>
+        <div type="tab" tabID="GIa3" style="background-color: aquamarine">
+          a3
+        </div>
+        <div type="tab" tabID="GIa4" style="background-color: burlywood">
+          a4
+        </div>
       </div>
     </div>
   </body>
