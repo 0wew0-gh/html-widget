@@ -123,6 +123,24 @@ export class Tabs {
                     }
                 }
                 tabsView.style.transitionDuration = "300ms";
+
+                // 播放视频
+                const video = document.querySelector(`[type="tab"] [videoID="${tabID}"]`);
+                if (video != null) {
+                    const observer = new IntersectionObserver((entries, observer) => {
+                        entries.forEach(entry => {
+                            // 当目标元素进入视口并且是第一次进入时触发动画
+                            if (entry.isIntersecting) {
+                                (video as HTMLVideoElement).play();
+
+                                observer.unobserve(entry.target); // 停止观察该元素
+                            }
+                        });
+                    }, {
+                        threshold: 0.8 // 设定元素至少50%进入视口时触发
+                    });
+                    observer.observe(video);
+                }
             } else if (btnTitle && btnContent) {
                 btnTitle.classList.remove('display-none');
                 btnContent.classList.add('display-none');
@@ -136,7 +154,6 @@ export class Tabs {
                 if (selected != null) {
                     return;
                 }
-
 
                 // 移除所有选中项
                 for (let i = 0; i < btnGroupItems.length; i++) {
@@ -206,6 +223,21 @@ export class Tabs {
                     // setTimeout(() => {
                     // }, 100);
                 }
+
+                // 播放视频
+                const video = document.querySelectorAll(`video`);
+                if (video != null) {
+                    for (let i = 0; i < video.length; i++) {
+                        const v = video[i] as HTMLVideoElement;
+                        const videoID = v.getAttribute("videoID");
+                        if (videoID == tabID) {
+                            v.play();
+                            continue;
+                        }
+                        v.pause();
+                        v.currentTime = 0;
+                    }
+                }
                 // 延迟一下再添加，上面的动画需要先准备一下
                 setTimeout(() => {
                     thisBtn.setAttribute('select', '');
@@ -217,18 +249,16 @@ export class Tabs {
     // 初始化Tab场景
     initTabView(tabsView: HTMLDivElement, direction: "Vertical" | "Horizontal", animation: "row" | "switch") {
         const tabs = tabsView.querySelectorAll('[type="tab"]');
+        var totalWidth = 0;
         for (let i = 0; i < tabs.length; i++) {
             const tab = tabs[i] as HTMLDivElement;
-            // console.log('initTabView switch:', animation, tab);
             if (animation == "row" && direction == "Vertical") {
-                tab.style.width = `${tabsView.clientWidth}px`
-                // } else if (animation == "switch") {
-                //     tab.classList.add('display-none');
+                tab.style.width = `${tabsView.clientWidth}px`;
+                totalWidth+=tab.clientWidth;
             }
         }
-        const animationType = tabsView.getAttribute('animation');
-        if (direction == "Vertical" && animationType == "row") {
-            tabsView.style.width = `${tabs.length * tabsView.clientWidth}px`;
+        if (animation == "row" && direction == "Vertical") {
+            tabsView.style.width = `${totalWidth}px`;
         }
     }
 }

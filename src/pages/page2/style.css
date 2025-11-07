@@ -178,3 +178,7 @@ h1 {
   visibility: hidden;
   transition: opacity var(--switch-animation-duration) ease, visibility var(--switch-animation-duration) ease;
 }
+
+video{
+  height: 100%;
+}
