@@ -193,13 +193,14 @@ export class Tabs {
                             }
                             td.classList.remove('select-tab');
                         }
-                        tabDiv.addEventListener('transitionend', () => {
+                        tabDiv.addEventListener('transitionend', function handle() {
                             for (let i = 0; i < allTabDiv.length; i++) {
                                 const td = allTabDiv[i] as HTMLDivElement;
                                 if (!td.classList.contains('select-tab')) {
                                     td.classList.add('display-none');
                                 }
                             }
+                            tabDiv.removeEventListener('transitionend', handle);
                         });
                     }, 10);
                     // setTimeout(() => {
