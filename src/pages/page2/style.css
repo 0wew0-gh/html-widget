@@ -50,7 +50,7 @@ h1 {
 }
 
 /* 按钮样式 */
-[type="btnGroup"] div {
+[type="btnGroup"] .group-btn {
   position: relative;
   min-width: var(--tool-bar-width);
   height: 100%;
@@ -62,19 +62,37 @@ h1 {
   text-align: center;
   z-index: 1;
 }
-[direction="Horizontal"] [type="btnGroup"] div {
-  height: var(--tool-bar-Vertical-height);
-  line-height: var(--tool-bar-Vertical-height);
+[direction="Horizontal"] [type="btnGroup"] .group-btn {
+  /* height: var(--tool-bar-Vertical-height);
+  line-height: var(--tool-bar-Vertical-height); */
+  height: auto;
+  padding: 10px 0;
 }
 
 /* 按钮鼠标移过样式 */
-[type="btnGroup"] div:hover {
+[type="btnGroup"] .group-btn:hover {
   background-color: #ddd;
 }
 /* 按钮选中样式 */
 [select] {
   color: var(--btnGroup-select-color) !important;
 }
+[select] [title] {
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+[select] [content] {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.display-none {
+  display: none;
+}
+.display-block {
+  display: block;
+}
+
 /* 按钮选中标识样式 */
 [type="btnGroup"] .select {
   position: absolute;
@@ -110,11 +128,50 @@ h1 {
 [direction="Vertical"] [type="tabsView"] {
   top: var(--tool-bar-height);
   height: calc(100% - var(--tool-bar-height));
-  transition: left ease; /* 平滑过渡效果 */
 }
 [direction="Horizontal"] [type="tabsView"] {
   left: var(--tool-bar-width);
   width: calc(100% - var(--tool-bar-width));
   height: calc(100%);
+}
+[direction="Vertical"] [type="tabsView"][animation="row"] {
+  transition: left ease; /* 平滑过渡效果 */
+}
+[direction="Horizontal"] [type="tabsView"][animation="row"] {
   transition: top ease; /* 平滑过渡效果 */
+}
+[animation="switch"] [type="tabsView"] [type="tab"] {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  left: 50px;
+  transition: left 1s ease, opacity 1s ease, visibility 1s ease;
+}
+.select-tab {
+  opacity: 1 !important;
+  visibility: visible !important;
+  left: 0 !important;
+}
+[direction="Horizontal"] [type="btnGroupItem"] {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: #000 1px solid;
+  border-radius: 20px;
+}
+[direction="Horizontal"] [type="btnGroupItem"] [title] {
+  height: auto;
+  line-height: normal;
+  font-size: 20px;
+  transition: opacity 1s ease, visibility 1s ease;
+}
+[direction="Horizontal"] [type="btnGroupItem"] [content] {
+  height: auto;
+  line-height: normal;
+  font-size: 16px;
+  font-weight: 400;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 1s ease, visibility 1s ease;
 }
