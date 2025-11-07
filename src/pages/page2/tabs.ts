@@ -193,16 +193,17 @@ export class Tabs {
                             }
                             td.classList.remove('select-tab');
                         }
-                    }, 10);
-                    setTimeout(() => {
-                        for (let i = 0; i < allTabDiv.length; i++) {
-                            const td = allTabDiv[i] as HTMLDivElement;
-                            if (td == tabDiv) {
-                                continue
+                        tabDiv.addEventListener('transitionend', () => {
+                            for (let i = 0; i < allTabDiv.length; i++) {
+                                const td = allTabDiv[i] as HTMLDivElement;
+                                if (!td.classList.contains('select-tab')) {
+                                    td.classList.add('display-none');
+                                }
                             }
-                            td.classList.add('display-none');
-                        }
-                    }, 1000);
+                        });
+                    }, 10);
+                    // setTimeout(() => {
+                    // }, 100);
                 }
                 // 延迟一下再添加，上面的动画需要先准备一下
                 setTimeout(() => {
@@ -217,7 +218,7 @@ export class Tabs {
         const tabs = tabsView.querySelectorAll('[type="tab"]');
         for (let i = 0; i < tabs.length; i++) {
             const tab = tabs[i] as HTMLDivElement;
-            console.log('initTabView switch:', animation, tab);
+            // console.log('initTabView switch:', animation, tab);
             if (animation == "row" && direction == "Vertical") {
                 tab.style.width = `${tabsView.clientWidth}px`
                 // } else if (animation == "switch") {
