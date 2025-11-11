@@ -9,8 +9,8 @@ export class HorizontalScroll {
     Exchanged = false;
     // 图片间隔(单位px)，需要与图片css的margin-right一致
     imageGap = 10;
-    // 过一张图片的时间图片宽度差别太大需要更改为根据图片宽度计算时间
-    animationDuration = 2;
+    // 速度：px/s 不要过快 150切图时可以看到卡顿
+    speed = 120;
     constructor() {
         if (this.scrollImages == null) {
             this.scrollImages = document.querySelector('.horizontal-scroll-img');
@@ -71,6 +71,10 @@ export class HorizontalScroll {
                 this.removeKeyframesRule('scroll-left');
                 this.addKeyframesRule(10, nextChild.clientWidth);
                 this.Exchanged = true;
+
+                const nextChildDuration = nextChild.clientWidth / this.speed;
+                (this.scrollImages as HTMLElement).style.animationDuration = `${nextChildDuration}s`
+                console.log("fistChildDuration", nextChild.clientWidth, nextChildDuration);
             }
         } else {
             this.Exchanged = false;
@@ -95,9 +99,12 @@ export class HorizontalScroll {
             return false;
         }
         const isScroll = maxImgWidth > scrollContainer.clientWidth;
-        console.log("isScroll", isScroll, maxImgWidth, scrollContainer.clientWidth);
+        console.log("isScroll", isScroll, maxImgWidth, scrollImages.clientWidth, scrollContainer.clientWidth);
+
+        const fistChildDuration = fistChild.clientWidth / this.speed;
+
         // 动态设置动画持续时间
-        (scrollImages as HTMLDivElement).style.animationDuration = `${this.animationDuration}s`;
+        (scrollImages as HTMLDivElement).style.animationDuration = `${fistChildDuration}s`;
 
         if (isScroll) {
             this.addKeyframesRule(0, fistChild.clientWidth);
