@@ -9,10 +9,12 @@ h1 {
 
 :root {
   --tool-bar-height: 50px;
-  --tool-bar-width: 150px;
+  --tool-bar-width: 182px;
+  --tool-bar-Horizontal-padding: 16px;
   --tool-bar-Vertical-height: 150px;
   --btnGroup-select-color: #1867c0;
-  --switch-animation-duration: 600ms;
+  --switch-animation-duration: 500ms;
+  --btn-content-type: cubic-bezier(0.4, 0, 1, 1);
 }
 
 .content {
@@ -35,7 +37,7 @@ h1 {
 /* 按钮组样式 */
 [type="btnGroup"] {
   position: relative;
-  background-color: rgb(255, 255, 255);
+  background-color: #ffffff00;
   display: flex;
   flex-wrap: nowrap;
   justify-content: center;
@@ -47,37 +49,51 @@ h1 {
   flex-direction: row;
 }
 [direction="Horizontal"] [type="btnGroup"] {
+  padding: var(--tool-bar-Horizontal-padding);
+
   flex-direction: column;
+  grid-gap: 12px;
+  gap: 12px;
+  min-width: fit-content;
 }
 
 /* 按钮样式 */
 [type="btnGroup"] .group-btn {
   position: relative;
-  min-width: var(--tool-bar-width);
   height: 100%;
   line-height: var(--tool-bar-height);
   color: rgb(0, 0, 0);
-  font-weight: 600;
+  /* font-weight: 600; */
   cursor: pointer;
   background-color: #ffffff;
   text-align: center;
   z-index: 1;
 }
+[direction="Vertical"] [type="btnGroup"] .group-btn {
+  min-width: var(--tool-bar-width);
+}
 [direction="Horizontal"] [type="btnGroup"] .group-btn {
+  min-width: 80px;
+  max-width: var(--tool-bar-width);
+  min-height: 26px;
   /* height: var(--tool-bar-Vertical-height);
   line-height: var(--tool-bar-Vertical-height); */
+  background-color: #1e1e20;
+  color: #fff;
+  transition: width var(--switch-animation-duration) ease,
+    height var(--switch-animation-duration) ease;
   height: auto;
   padding: 10px 0;
 }
 
 /* 按钮鼠标移过样式 */
 [type="btnGroup"] .group-btn:hover {
-  background-color: #ddd;
+  background-color: #272729;
 }
 /* 按钮选中样式 */
-[select] {
+/* [select] {
   color: var(--btnGroup-select-color) !important;
-}
+} */
 [select] [title] {
   opacity: 0 !important;
   visibility: hidden !important;
@@ -117,7 +133,7 @@ h1 {
 
 [type="tabsView"] {
   position: absolute;
-  background-color: #1867c0;
+  background-color: #ffffff00;
 }
 [type="tabsView"] [type="tab"] {
   height: 100%;
@@ -131,7 +147,10 @@ h1 {
   height: calc(100% - var(--tool-bar-height));
 }
 [direction="Horizontal"] [type="tabsView"] {
-  left: var(--tool-bar-width);
+  left: calc(
+    var(--tool-bar-width) + var(--tool-bar-Horizontal-padding) +
+      var(--tool-bar-Horizontal-padding)
+  );
   width: calc(100% - var(--tool-bar-width));
   height: calc(100%);
 }
@@ -147,7 +166,10 @@ h1 {
   position: absolute;
   top: 10px;
   left: 30px;
-  transition: top var(--switch-animation-duration) ease, left var(--switch-animation-duration) ease, opacity var(--switch-animation-duration) ease, visibility var(--switch-animation-duration) ease;
+  transition: top var(--switch-animation-duration) ease,
+    left var(--switch-animation-duration) ease,
+    opacity var(--switch-animation-duration) ease,
+    visibility var(--switch-animation-duration) ease;
 }
 .select-tab {
   opacity: 1 !important;
@@ -160,14 +182,17 @@ h1 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: #000 1px solid;
+  /* border: #000 1px solid; */
   border-radius: 20px;
 }
 [direction="Horizontal"] [type="btnGroupItem"] [title] {
   height: auto;
   line-height: normal;
   font-size: 20px;
-  transition: opacity var(--switch-animation-duration) ease, visibility var(--switch-animation-duration) ease;
+  transition: opacity calc(var(--switch-animation-duration) * 2.5)
+      var(--btn-content-type),
+    visibility calc(var(--switch-animation-duration) * 2.5)
+      var(--btn-content-type);
 }
 [direction="Horizontal"] [type="btnGroupItem"] [content] {
   height: auto;
@@ -176,9 +201,12 @@ h1 {
   font-weight: 400;
   opacity: 0;
   visibility: hidden;
-  transition: opacity var(--switch-animation-duration) ease, visibility var(--switch-animation-duration) ease;
+  transition: opacity calc(var(--switch-animation-duration) * 2.5)
+      var(--btn-content-type),
+    visibility calc(var(--switch-animation-duration) * 2.5)
+      var(--btn-content-type);
 }
 
-video{
+video {
   height: 100%;
 }

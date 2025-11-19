@@ -46,21 +46,37 @@ export class Tabs {
     // 初始化按钮组中的按钮
     initBtnGroupItems(btnGroup: HTMLDivElement) {
         const btnGroupItems = btnGroup.querySelectorAll('[type="btnGroupItem"]');
+
+        var isSetSelectDiv = true;
+        const tabsRoot = btnGroup.parentElement as HTMLDivElement;
+        if (tabsRoot) {
+            const selectTag = tabsRoot.getAttribute('selecttag');
+            if (selectTag != null && selectTag == "false") {
+                isSetSelectDiv = false;
+            }
+        }
         // 获取选中标记
         var select = btnGroup.querySelector('.select') as HTMLSpanElement;
-        if (select == undefined || select == null) {
-            // 如果找不到，则创建一个
-            select = document.createElement('span');
-            select.className = 'select';
-            btnGroup.appendChild(select);
+        if ((select == undefined || select == null)) {
+            if (isSetSelectDiv) {
+                // 如果找不到，则创建一个
+                select = document.createElement('span');
+                select.className = 'select';
+                btnGroup.appendChild(select);
+            }
+        } else if (!isSetSelectDiv) {
+            btnGroup.removeChild(select);
         }
+
         for (let i = 0; i < btnGroupItems.length; i++) {
             const btnGItem = btnGroupItems[i];
+            const btnGItemHTML = btnGItem as HTMLElement;
+            // btnGItemHTML.style.width = `${btnGItem.clientWidth}px`;
+            // btnGItemHTML.style.height = `${btnGItem.clientHeight}px`;
             // 获取按钮的选中状态 为 null 则没有，为 空字符串 则有select属性当前按钮为按下状态
 
             var animation: "row" | "switch" = "row";
             var direction: "Vertical" | "Horizontal" = "Vertical";
-            const tabsRoot = btnGroup.parentElement as HTMLDivElement;
             if (tabsRoot) {
                 const tabsDirection = tabsRoot.getAttribute('direction');
                 if (tabsDirection != null) {
@@ -79,23 +95,27 @@ export class Tabs {
                 if (btnTitle && btnContent) {
                     btnTitle.classList.add('display-none')
                     btnContent.classList.remove('display-none');
+                    btnGItemHTML.style.width = `${btnContent.clientWidth}px`;
+                    btnGItemHTML.style.height = `${btnContent.clientHeight}px`;
                 }
-                // 等待一下再设置select的left值，因为选中按钮需要根据隐藏的项重新排版
-                setTimeout(() => {
-                    // 根据选中状态设置select的left值
-                    if (direction == "Horizontal") {
+                if (isSetSelectDiv) {
+                    // 等待一下再设置select的left值，因为选中按钮需要根据隐藏的项重新排版
+                    setTimeout(() => {
                         // 根据选中状态设置select的left值
-                        select.style.top = (btnGItem as HTMLDivElement).offsetTop + "px";
-                        select.style.height = (btnGItem as HTMLDivElement).offsetHeight + "px";
-                    } else {
-                        select.style.left = (btnGItem as HTMLDivElement).offsetLeft + "px";
-                    }
-                }, 10);
-                // 延迟一下在添加过度动画时间，以免从屏幕最左侧移动到选中按钮下，如需要此动画去掉setTimeout
-                const sto = setTimeout(() => {
-                    select.style.transitionDuration = "300ms";
-                    clearTimeout(sto);
-                }, 10);
+                        if (direction == "Horizontal") {
+                            // 根据选中状态设置select的left值
+                            select.style.top = (btnGItem as HTMLDivElement).offsetTop + "px";
+                            select.style.height = (btnGItem as HTMLDivElement).offsetHeight + "px";
+                        } else {
+                            select.style.left = (btnGItem as HTMLDivElement).offsetLeft + "px";
+                        }
+                    }, 10);
+                    // 延迟一下在添加过度动画时间，以免从屏幕最左侧移动到选中按钮下，如需要此动画去掉setTimeout
+                    const sto = setTimeout(() => {
+                        select.style.transitionDuration = "300ms";
+                        clearTimeout(sto);
+                    }, 10);
+                }
 
 
                 // 获取按钮设置的tabID
@@ -144,6 +164,8 @@ export class Tabs {
             } else if (btnTitle && btnContent) {
                 btnTitle.classList.remove('display-none');
                 btnContent.classList.add('display-none');
+                btnGItemHTML.style.width = `${btnTitle.clientWidth}px`;
+                btnGItemHTML.style.height = `${btnTitle.clientHeight}px`;
             }
 
 
@@ -152,6 +174,8 @@ export class Tabs {
                 const thisBtn = event.target === event.currentTarget ? event.target as HTMLDivElement : (event.target as HTMLDivElement).parentElement as HTMLDivElement;
                 const selected = thisBtn.getAttribute('select');
                 if (selected != null) {
+                    const btnContent = thisBtn.querySelector('[content]') as HTMLElement;
+                    console.log(99, thisBtn, btnContent.clientHeight, btnContent.offsetHeight, btnContent.scrollHeight);
                     return;
                 }
 
@@ -167,6 +191,9 @@ export class Tabs {
                     if (btnTitle && btnContent) {
                         btnTitle.classList.remove('display-none');
                         btnContent.classList.add('display-none');
+                        const btnGItemHTML = btnGItem as HTMLElement;
+                        btnGItemHTML.style.width = `80px`;
+                        btnGItemHTML.style.height = `26px`;
                     }
 
                 }
@@ -175,15 +202,29 @@ export class Tabs {
                 if (btnTitle && btnContent) {
                     btnTitle.classList.add('display-none')
                     btnContent.classList.remove('display-none');
+
+                    thisBtn.style.width = `var(--tool-bar-width)`;
+                    var btnContentHeight = -1;
+                    const interval = setInterval(() => {
+                        if (btnContentHeight == btnContent.clientHeight) {
+                            clearInterval(interval);
+                            return;
+                        }
+                        btnContentHeight = btnContent.clientHeight;
+                        thisBtn.style.height = `${btnContentHeight}px`;
+                        console.log(44, thisBtn, btnContent.clientHeight, btnContent.offsetHeight, btnContent.scrollHeight, btnContent.getBoundingClientRect().height);
+                    }, 150);
                 }
                 // 添加选中项
 
-                if (direction == "Horizontal") {
-                    // 根据选中状态设置select的left值
-                    select.style.top = thisBtn.offsetTop + "px";
-                    select.style.height = (btnGItem as HTMLDivElement).offsetHeight + "px";
-                } else {
-                    select.style.left = thisBtn.offsetLeft + 'px';
+                if (isSetSelectDiv) {
+                    if (direction == "Horizontal") {
+                        // 根据选中状态设置select的left值
+                        select.style.top = thisBtn.offsetTop + "px";
+                        select.style.height = (btnGItem as HTMLDivElement).offsetHeight + "px";
+                    } else {
+                        select.style.left = thisBtn.offsetLeft + 'px';
+                    }
                 }
 
                 // 获取按钮设置的tabID
@@ -254,7 +295,7 @@ export class Tabs {
             const tab = tabs[i] as HTMLDivElement;
             if (animation == "row" && direction == "Vertical") {
                 tab.style.width = `${tabsView.clientWidth}px`;
-                totalWidth+=tab.clientWidth;
+                totalWidth += tab.clientWidth;
             }
         }
         if (animation == "row" && direction == "Vertical") {
