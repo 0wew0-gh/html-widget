@@ -174,8 +174,6 @@ export class Tabs {
                 const thisBtn = event.target === event.currentTarget ? event.target as HTMLDivElement : (event.target as HTMLDivElement).parentElement as HTMLDivElement;
                 const selected = thisBtn.getAttribute('select');
                 if (selected != null) {
-                    const btnContent = thisBtn.querySelector('[content]') as HTMLElement;
-                    console.log(99, thisBtn, btnContent.clientHeight, btnContent.offsetHeight, btnContent.scrollHeight);
                     return;
                 }
 
@@ -212,7 +210,6 @@ export class Tabs {
                         }
                         btnContentHeight = btnContent.clientHeight;
                         thisBtn.style.height = `${btnContentHeight}px`;
-                        console.log(44, thisBtn, btnContent.clientHeight, btnContent.offsetHeight, btnContent.scrollHeight, btnContent.getBoundingClientRect().height);
                     }, 150);
                 }
                 // 添加选中项

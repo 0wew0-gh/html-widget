@@ -14,6 +14,7 @@ h1 {
   --tool-bar-Vertical-height: 150px;
   --btnGroup-select-color: #1867c0;
   --switch-animation-duration: 500ms;
+  --content-animation-duration: 750ms;
   --btn-content-type: cubic-bezier(0.88, 0.04, 0.75, 1);
 }
 
@@ -151,7 +152,9 @@ h1 {
     var(--tool-bar-width) + var(--tool-bar-Horizontal-padding) +
       var(--tool-bar-Horizontal-padding)
   );
-  width: calc(100% - var(--tool-bar-width) - var(--tool-bar-Horizontal-padding) * 2);
+  width: calc(
+    100% - var(--tool-bar-width) - var(--tool-bar-Horizontal-padding) * 2
+  );
   height: calc(100%);
 }
 [direction="Vertical"] [type="tabsView"][animation="row"] {
@@ -189,22 +192,19 @@ h1 {
   height: auto;
   line-height: normal;
   font-size: 20px;
-  transition: opacity calc(var(--switch-animation-duration) * 2.5)
-      var(--btn-content-type),
-    visibility calc(var(--switch-animation-duration) * 2.5)
-      var(--btn-content-type);
+  transition: opacity var(--content-animation-duration) var(--btn-content-type),
+    visibility var(--content-animation-duration) var(--btn-content-type);
 }
 [direction="Horizontal"] [type="btnGroupItem"] [content] {
   height: auto;
   line-height: normal;
   font-size: 16px;
   font-weight: 400;
+  padding: var(--tool-bar-Horizontal-padding);
   opacity: 0;
   visibility: hidden;
-  transition: opacity calc(var(--switch-animation-duration) * 2.5)
-      var(--btn-content-type),
-    visibility calc(var(--switch-animation-duration) * 2.5)
-      var(--btn-content-type);
+  transition: opacity var(--content-animation-duration) var(--btn-content-type),
+    visibility var(--content-animation-duration) var(--btn-content-type);
 }
 
 video {
