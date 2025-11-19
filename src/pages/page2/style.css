@@ -9,12 +9,13 @@ h1 {
 
 :root {
   --tool-bar-height: 50px;
-  --tool-bar-width: 182px;
+  --tool-bar-width: 250px;
   --tool-bar-Horizontal-padding: 16px;
   --tool-bar-Vertical-height: 150px;
   --btnGroup-select-color: #1867c0;
   --switch-animation-duration: 500ms;
-  --content-animation-duration: 750ms;
+  --btnview-duration: 200ms;
+  --content-duration: 500ms;
   --btn-content-type: cubic-bezier(0.88, 0.04, 0.75, 1);
 }
 
@@ -81,8 +82,8 @@ h1 {
   line-height: var(--tool-bar-Vertical-height); */
   background-color: #1e1e20;
   color: #fff;
-  transition: width var(--switch-animation-duration) ease,
-    height var(--switch-animation-duration) ease;
+  transition: width var(--btnview-duration) linear,
+    height var(--btnview-duration) linear;
   height: auto;
   padding: 10px 0;
 }
@@ -192,8 +193,8 @@ h1 {
   height: auto;
   line-height: normal;
   font-size: 20px;
-  transition: opacity var(--content-animation-duration) var(--btn-content-type),
-    visibility var(--content-animation-duration) var(--btn-content-type);
+  transition: opacity var(--content-duration) var(--btn-content-type),
+    visibility var(--content-duration) var(--btn-content-type);
 }
 [direction="Horizontal"] [type="btnGroupItem"] [content] {
   height: auto;
@@ -203,8 +204,8 @@ h1 {
   padding: var(--tool-bar-Horizontal-padding);
   opacity: 0;
   visibility: hidden;
-  transition: opacity var(--content-animation-duration) var(--btn-content-type),
-    visibility var(--content-animation-duration) var(--btn-content-type);
+  transition: opacity var(--content-duration) var(--btn-content-type),
+    visibility var(--content-duration) var(--btn-content-type);
 }
 
 video {

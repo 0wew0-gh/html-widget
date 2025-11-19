@@ -1,6 +1,7 @@
 // TODO: 存在BUG，当图片宽度大于容器一点时，最右侧有穿帮
 export class Tabs {
 
+    btnview = 100;// 按钮高度调整间隔
 
     constructor() {
         // 获取Tabs主体
@@ -210,7 +211,7 @@ export class Tabs {
                         }
                         btnContentHeight = btnContent.clientHeight;
                         thisBtn.style.height = `${btnContentHeight}px`;
-                    }, 150);
+                    }, this.btnview);
                 }
                 // 添加选中项
 
