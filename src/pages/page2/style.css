@@ -14,7 +14,7 @@ h1 {
   --tool-bar-Vertical-height: 150px;
   --btnGroup-select-color: #1867c0;
   --switch-animation-duration: 500ms;
-  --btn-content-type: cubic-bezier(0.4, 0, 1, 1);
+  --btn-content-type: cubic-bezier(0.88, 0.04, 0.75, 1);
 }
 
 .content {
@@ -137,7 +137,7 @@ h1 {
 }
 [type="tabsView"] [type="tab"] {
   height: 100%;
-  width: 100vw; /* 未加载完成前占满屏幕 */
+  width: 100%;
 }
 [direction="Vertical"] [type="tabsView"] [type="tab"] {
   float: left;
@@ -151,7 +151,7 @@ h1 {
     var(--tool-bar-width) + var(--tool-bar-Horizontal-padding) +
       var(--tool-bar-Horizontal-padding)
   );
-  width: calc(100% - var(--tool-bar-width));
+  width: calc(100% - var(--tool-bar-width) - var(--tool-bar-Horizontal-padding) * 2);
   height: calc(100%);
 }
 [direction="Vertical"] [type="tabsView"][animation="row"] {
